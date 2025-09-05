@@ -4,7 +4,6 @@ import morgan from 'morgan';
 import axios from 'axios';
 import pino from 'pino'
 
-require('./tracing'); // Add this line to initialize tracing
 
 const app = express();
 
@@ -111,7 +110,11 @@ app.get('/metrics', async(req,res) => {
 // Call service B
 app.get('/call-service-b', async(req,res) => {
     try {
+<<<<<<< HEAD
         const response = await axios.get(`${process.env.SERVICE_B_URI}/hello`);
+=======
+        const response = await axios.get(`${process.env.SERVICE_B_URL}/hello`);
+>>>>>>> 3eb7e1a (updated Application)
         res.send(`<h1 style="font-size: 100px">Service B says: ${response.data}<h1>`);
     } catch (error) {
         res.status(500).json({error: 'Failed to call Service B'});
