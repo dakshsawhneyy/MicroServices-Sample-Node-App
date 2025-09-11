@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svc-b
+  labels:
+    app: svc-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svc-b
+  template:
+    metadata:
+      labels:
+        app: svc-b
+    spec:
+      containers:
+        - name: svc-b
+          image: dakshsawhneyy/demo-service-b:v
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9001
+          env:
+            - name: OTEL_EXPORTER_JAEGER_ENDPOINT
+              value: "http://jaeger-collector.tracing:14268/api/traces"
